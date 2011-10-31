@@ -171,21 +171,28 @@ color_ball:
 ###############
 
 color_paddle:
-	add	 $t6, $0, $a1	# $t6 = y-coord of bottom paddle
-	add	 $t3, $0, $0		# initialize i to 0. $t3 = 0
-	lw	 $t4, 24($sp)	# $t4 = height of the paddle, $t4 = 24($sp)
-	j	 test0			# create a for loop that colors from the bottom of paddle
-							# to top of paddle
-loop0:	
-	sll	 $t0, $a0, 16	# Set paddle color. paddle_x doesn't change
-	add	 $t0, $t0,$t6	# Set paddle_y file for color update
-	sw	 $t0, 0xFF($0)
-	addi $t6, $t6, 1		# increment position along paddle by 1
-	addi $t3, $t3, 1		# increment i by 1			
-test0:
-	slt	 $t5, $t3, $t4
-	bne	 $t5, $0, loop0	# if i ($t3) < paddle height, goto loop1
+
+	add	 $a2, $a1, $0	# load upper right corner of paddle
+	lw	 $t4, 24($sp)	# load height of paddle
+	add	 $a1, $a1, $t4  # Setup lower-left corner of paddle
+	jal	 color_region
 	jr	 $ra
+#		
+#	add	 $t6, $0, $a1	# $t6 = y-coord of bottom paddle
+#	add	 $t3, $0, $0	# initialize i to 0. $t3 = 0
+#	lw	 $t4, 24($sp)	# $t4 = height of the paddle, $t4 = 24($sp)
+#	j	 test0			# create a for loop that colors from the bottom of paddle
+#							# to top of paddle
+#loop0:	
+#	sll	 $t0, $a0, 16	# Set paddle color. paddle_x doesn't change
+#	add	 $t0, $t0,$t6	# Set paddle_y file for color update
+#	sw	 $t0, 0xFF($0)
+#	addi $t6, $t6, 1	# increment position along paddle by 1
+#	addi $t3, $t3, 1	# increment i by 1			
+#test0:
+#	slt	 $t5, $t3, $t4
+#	bne	 $t5, $0, loop0	# if i ($t3) < paddle height, goto loop1
+#	jr	 $ra
 
 ###############
 # function: color_region
