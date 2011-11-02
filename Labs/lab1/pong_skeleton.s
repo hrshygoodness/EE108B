@@ -217,24 +217,24 @@ color_paddle:
 #	j inner
 #update_outer:
 #	j outer_loop		
-# outer is the columnss, inner is the rows
+# outer is the rows, inner is the columns
 # 		
 color_region:
 	andi $t4, $a1, 0x3F		# $t4 = y_max
-	andi $t5, $a1, 0x3F00	# get mask of x-coordinate 
-	srl	 $t5, $t5, 0x08		# $t5 = x_min. Shift down the x-coord to get the x_min
+	andi $t6, $a2, 0x3F		# Initialize outer-loop variable, $t6 = y_min		
     addi $t4, $t4, 1      	# increment y_max by 1 to account for limit test with slt
 	andi $t7, $a2, 0x3F00	# get mask of x-coordinate 
 	srl	 $t7, $t7, 0x08		# $t7 = x_max. Shift down the x-coord to get the x_max
 	addi $t7, $t7, 1		# increment x_max by 1 to account for limit test with slt
 loop1Outer:
 	# outer test
-	slt	 $t8, $t5, $t7
+	slt	 $t8, $t6, $t4
 	beq	 $t8, $0, exit		# If the outer test fails, jump out of the loop
-	andi $t6, $a2, 0x3F		# Initialize inner-loop variable, $t6 = y_min
+	andi $t5, $a1, 0x3F00	# Initialize inner-loop variable. $t5 = x_min. Get mask of x-coordinate
+	srl	 $t5, $t5, 0x08		# $t5 = x_min. Shift down the x-coord to get the x_min	
 loop1Inner:
 	# inner test
-	slt	 $t8, $t6, $t4		
+	slt	 $t8, $t5, $t7		
 	beq	 $t8, $0,updateOuter# if y >= y_max, goto updateOuter
 	add	 $t0, $0, $a0
 	sll	 $t0, $t0, 8		# shift 3-bit color mask to bit 8
@@ -242,10 +242,10 @@ loop1Inner:
 	sll	 $t0, $t0, 8		# place x-coord data in bitfield and shift left by 8
 	add	 $t0, $t0, $t6		# place y-coord data in bitfield
 	sw	 $t0, 0xFF($0)
-	addi $t6, $t6, 1		# increment inner-loop index by 1
+	addi $t5, $t5, 1		# increment inner-loop index by 1
 	j	 loop1Inner
 updateOuter:
-	addi $t5, $t5, 1		# increment the outer index
+	addi $t6, $t6, 1		# increment the outer index
 	j	 loop1Outer
 exit:
 	jr	 $ra
