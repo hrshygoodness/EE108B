@@ -107,9 +107,9 @@ initialized:
     # get user input and move paddle
 	# For simulation, paddle_y should be paddle_y + ball_dy
 	# next_ball_y = curr_ball_y + ball_dy
-	#addi    $s3, $s1, -3
-	#addu    $s3, $s3, $t2          # place	center of paddle at ball_y + ball_dy
-	add		$s3, $s3, $s5		# move paddle_y by ball_dy
+	addi    $s3, $s1, -3
+	addu    $s3, $s3, $s5          # place	center of paddle at ball_y + ball_dy
+#	add		$s3, $s3, $s5		# move paddle_y by ball_dy
 
 		
     # if paddy_y is beyond board, limit to edge (e.g. should not go above 24)
@@ -132,7 +132,7 @@ paddleHitCheck:
 	addiu    $t0, $0, 1
 	bne	     $s0, $t0, rightWallCheck
 	slt	     $t0, $s1, $s3		# $t0 = 1 if (ball_y is below paddle_y)
-	beq	     $t0, $0, rightWallCheck
+	bne	     $t0, $0, rightWallCheck
 	lw	     $t1, 24($sp)		# load height of paddle
 	addu     $t1, $t1, $s3		# paddle range = paddle_y + height
 	slt	     $t0, $s1, $t1		# $t0 = 1 if ball_y is <= range of paddle_y		
@@ -169,7 +169,7 @@ updateDisplay:
 	# change this code if you want to vary the game speed.
 	
 	lui      $a0, 0x4
-	ori	     $a0, $a0, 0xffff	# stall for 0x4ffff
+	ori	     $a0, $a0, 0x00ff	# stall for 0x4ffff
 	jal	     stall
 	
 	j        game_loop
