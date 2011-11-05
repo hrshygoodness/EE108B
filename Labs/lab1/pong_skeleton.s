@@ -23,7 +23,8 @@
 main:
 	
 	# initialize constants (feel free to change these)
-	# remember that you cannot use the lower addresses in xspim (read the lab handout for explanation).
+	# remember that you cannot use the lower addresses in xspim
+	# (read the lab handout for explanation).
 	addiu	$t0, $0, 39		# maximum x coordinate
 	sw		$t0, 0($sp)
 	addiu	$t0, $0, 29		# maximum y coordinate
@@ -161,7 +162,7 @@ updateDisplay:
 	addu     $a1, $0, $s0		# $a1 = ball_x
 	addu     $a2, $0, $s1		# $a2 = ball_y
 	jal      color_ball
-	lw	     $a0, 12($sp)		# $a0 = paddle color (0x02) 0x004000ac
+	lw	     $a0, 12($sp)		# $a0 = paddle color (0x02)
 	addu	 $a1, $0, $s3		# $a1 = paddle_y
 	jal	     color_paddle
 
@@ -208,19 +209,6 @@ color_ball:
 	sw 	    $t0, 0xFF($0)
 	jr	    $ra
 
-
-# Testing color_ball as wrapper to color_ region on ball
-#	addu    $t5, $a1, $0	# $t5 = x-coord
-#	addu    $t6, $a2, $0	# $t6 = y-coord
-#	sll	    $a1, $a1, 8
-#	addu    $a1, $a1, $a2	# $a1 = {x,y}
-#	addu    $a2, $t5, $0 
-#	sll	    $a2, $a2, 8
-#	addu    $a2, $a2, $t6	# $a2 = {x,y}
-#	jal	    color_region
-#	jr	    $ra
-		
-
 ###############
 # function: color_paddle
 # arguments:
@@ -243,14 +231,6 @@ test0:
 	slt     $t5, $t3, $t4
 	bne	    $t5, $0, loop0	# if i ($t3) < paddle height, goto loop0
 	jr	    $ra
-		
-# Testing color_paddle as wrapper to color_region
-#	addu    $a2, $a1, $0	# load upper right corner of paddle
-#	lw	    $t4, 24($sp)	# load height of paddle
-#	addiu   $t4, $t4, -1	# subtract 1
-#	addu    $a1, $a1, $t4  # Setup lower-left corner of paddle
-#	jal	    color_region
-#	jr	    $ra
 
 ###############
 # function: color_region
@@ -260,23 +240,7 @@ test0:
 #        x in bits 13...8, y in bits 5...0
 #   $a2: coordinate of upper right corner of region
 #        x in bits 13...8, y in bits 5...0
-###############
-
-#init outer
-#outloop: test
-#if(!test)
-#	jr $ra
-#init inner
-#inner: test
-#	if(!test)
-#		j update_outer
-#	do work
-#	update inner
-#	j inner
-#update_outer:
-#	j outer_loop		
-# outer is the columnss, inner is the rows
-# 		
+###############		
 color_region:
 	andi    $t4, $a1, 0x3F		# $t4 = y_max
 	andi    $t5, $a1, 0x3F00	# get mask of x-coordinate 
