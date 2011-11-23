@@ -71,15 +71,15 @@ game_loop:
 
 	# prepare to color region of board black. Lower left corner {x_min, y_max}
 	# upper right corner is {x_max, y_min}
-#	lw	$a0,0($0)
-#	add $a1, $0, $0
-#	sll $a1, $a1, 8
-#	lw	$t0, 4($sp)
-#	add $a1, $a1, $t0
-#	lw  $a2, 0($sp)
-#	sll	$a2, $a2, 8
-#	add $a2, $a2, $0
-#	jal	color_region
+	lw	$a0,8($sp)			# load background color into $a0
+	add $a1, $0, $0			# load x_min into $a1
+	sll $a1, $a1, 8			# shift x_min over by 8
+	lw	$t0, 4($sp)			# load y_max into $t0
+	add $a1, $a1, $t0		# add y_max to $a1
+	lw  $a2, 0($sp)			# load x_max into $a2
+	sll	$a2, $a2, 8			
+	add $a2, $a2, $0
+	jal	color_region
 
 
 	# get user input and move paddle
@@ -140,26 +140,25 @@ end_stall:
 #   $a1: x coordinate of lower left corner of ball
 #   $a2: y coordinate of lower left corner of ball
 ###############
-
-color_ball:
-	addi $t5, $a1, $0	# $t5 = x-coord
-	addi $t6, $a2, $0	# $t6 = y-coord
-
-	sll	 $a1, $a1, 8
-	add	 $a1, $a1, $a2	# $a1 = {x,y}
-	add	 $a2, $t5, $0 
-	sll	 $a2, $a2, 8
-	add	 $a2, $a2, $t6	# $a2 = {x,y}
-	jal	 color_region
+color_ball:		
+	add  $t0, $0, $a0
+	sll  $t0, $t0, 8
+	add  $t0, $t0, $a1
+	sll  $t0, $t0, 8
+	add  $t0, $t0, $a2
+	sw 	 $t0, 0xFF($0)
 	jr	 $ra
 
-		
-#	add  $t0, $0, $a0
-#	sll  $t0, $t0, 8
-#	add  $t0, $t0, $a1
-#	sll  $t0, $t0, 8
-#	add  $t0, $t0, $a2
-#	sw 	 $t0, 0xFF($0)
+
+# Testing color_ball as wrapper to color_ region on ball
+#	add $t5, $a1, $0	# $t5 = x-coord
+#	add $t6, $a2, $0	# $t6 = y-coord
+#	sll	 $a1, $a1, 8
+#	add	 $a1, $a1, $a2	# $a1 = {x,y}
+#	add	 $a2, $t5, $0 
+#	sll	 $a2, $a2, 8
+#	add	 $a2, $a2, $t6	# $a2 = {x,y}
+#	jal	 color_region
 #	jr	 $ra
 		
 
@@ -171,21 +170,29 @@ color_ball:
 ###############
 
 color_paddle:
-	add	 $t6, $0, $a1	# $t6 = y-coord of bottom paddle
-	add	 $t3, $0, $0		# initialize i to 0. $t3 = 0
-	lw	 $t4, 24($sp)	# $t4 = height of the paddle, $t4 = 24($sp)
-	j	 test0			# create a for loop that colors from the bottom of paddle
-							# to top of paddle
-loop0:	
-	sll	 $t0, $a0, 16	# Set paddle color. paddle_x doesn't change
-	add	 $t0, $t0,$t6	# Set paddle_y file for color update
-	sw	 $t0, 0xFF($0)
-	addi $t6, $t6, 1		# increment position along paddle by 1
-	addi $t3, $t3, 1		# increment i by 1			
-test0:
-	slt	 $t5, $t3, $t4
-	bne	 $t5, $0, loop0	# if i ($t3) < paddle height, goto loop1
+# Testing color_paddle as wrapper to color_region
+	add	 $a2, $a1, $0	# load upper right corner of paddle
+	lw	 $t4, 24($sp)	# load height of paddle
+	addi $t4, $t4, -1	# subtract 1
+	add	 $a1, $a1, $t4  # Setup lower-left corner of paddle
+	jal	 color_region
 	jr	 $ra
+#		
+#	add	 $t6, $0, $a1	# $t6 = y-coord of bottom paddle
+#	add	 $t3, $0, $0	# initialize i to 0. $t3 = 0
+#	lw	 $t4, 24($sp)	# $t4 = height of the paddle, $t4 = 24($sp)
+#	j	 test0			# create a for loop that colors from the bottom of paddle
+#							# to top of paddle
+#loop0:	
+#	sll	 $t0, $a0, 16	# Set paddle color. paddle_x doesn't change
+#	add	 $t0, $t0,$t6	# Set paddle_y file for color update
+#	sw	 $t0, 0xFF($0)
+#	addi $t6, $t6, 1	# increment position along paddle by 1
+#	addi $t3, $t3, 1	# increment i by 1			
+#test0:
+#	slt	 $t5, $t3, $t4
+#	bne	 $t5, $0, loop0	# if i ($t3) < paddle height, goto loop1
+#	jr	 $ra
 
 ###############
 # function: color_region
@@ -197,22 +204,38 @@ test0:
 #        x in bits 13...8, y in bits 5...0
 ###############
 
+#init outer
+#outloop: test
+#if(!test)
+#	jr $ra
+#init inner
+#inner: test
+#	if(!test)
+#		j update_outer
+#	do work
+#	update inner
+#	j inner
+#update_outer:
+#	j outer_loop		
+# outer is the rows, inner is the columns
+# 		
 color_region:
-#	add	 $t0, $0, $0		# i = 0, $t0 = 0 (i iterates over x)
-#	add	 $t3, $0, $0		# j = 0, $t3 = 0 (j iterates over y)
 	andi $t4, $a1, 0x3F		# $t4 = y_max
-#	add	 $t0, $0, $t4		# i = x_min
-	andi $t5, $a1, 0x3F00	# get mask of x-coordinate 
-	srl	 $t5, $t5, 0x08		# $t5 = x_min. Shift down the x-coord to get the x_min
+	andi $t6, $a2, 0x3F		# Initialize outer-loop variable, $t6 = y_min		
     addi $t4, $t4, 1      	# increment y_max by 1 to account for limit test with slt
-	andi $t6, $a2, 0x3F		# $t6 = y_min
 	andi $t7, $a2, 0x3F00	# get mask of x-coordinate 
 	srl	 $t7, $t7, 0x08		# $t7 = x_max. Shift down the x-coord to get the x_max
 	addi $t7, $t7, 1		# increment x_max by 1 to account for limit test with slt
-	j	 test1Outer
 loop1Outer:
-	j	 test1Inner		
+	# outer test
+	slt	 $t8, $t6, $t4
+	beq	 $t8, $0, exit		# If the outer test fails, jump out of the loop
+	andi $t5, $a1, 0x3F00	# Initialize inner-loop variable. $t5 = x_min. Get mask of x-coordinate
+	srl	 $t5, $t5, 0x08		# $t5 = x_min. Shift down the x-coord to get the x_min	
 loop1Inner:
+	# inner test
+	slt	 $t8, $t5, $t7		
+	beq	 $t8, $0,updateOuter# if y >= y_max, goto updateOuter
 	add	 $t0, $0, $a0
 	sll	 $t0, $t0, 8		# shift 3-bit color mask to bit 8
 	add	 $t0, $t0, $t5
@@ -220,12 +243,10 @@ loop1Inner:
 	add	 $t0, $t0, $t6		# place y-coord data in bitfield
 	sw	 $t0, 0xFF($0)
 	addi $t5, $t5, 1		# increment inner-loop index by 1
-test1Inner:
-	slt	 $t8, $t5, $t7
-	bne	 $t8, $0, loop1Inner# if x < x_max, goto loop1Inner
-	addi $t7, $t7, 1		# increment outer-loop index
-test1Outer:
-	slt	 $t8, $t6, $t4	
-	bne	 $t8, $0, loop1Outer# if y < y_max goto loop1Outer
+	j	 loop1Inner
+updateOuter:
+	addi $t6, $t6, 1		# increment the outer index
+	j	 loop1Outer
+exit:
 	jr	 $ra
 
