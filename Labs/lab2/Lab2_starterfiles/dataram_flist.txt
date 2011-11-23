@@ -1,0 +1,16 @@
+# Output products list for <dataram>
+_xmsgs/pn_parser.xmsgs
+blk_mem_gen_ds512.pdf
+dataram.asy
+dataram.gise
+dataram.ngc
+dataram.sym
+dataram.v
+dataram.veo
+dataram.vhd
+dataram.vho
+dataram.xco
+dataram.xise
+dataram_flist.txt
+dataram_readme.txt
+dataram_xmdf.tcl

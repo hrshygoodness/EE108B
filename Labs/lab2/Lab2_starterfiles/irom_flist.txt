@@ -1,0 +1,14 @@
+# Output products list for <irom>
+_xmsgs/pn_parser.xmsgs
+blk_mem_gen_ds512.pdf
+irom.asy
+irom.gise
+irom.mif
+irom.ngc
+irom.v
+irom.veo
+irom.xco
+irom.xise
+irom_flist.txt
+irom_readme.txt
+irom_xmdf.tcl
