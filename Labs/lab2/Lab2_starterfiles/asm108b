@@ -1,0 +1,105 @@
+#!/bin/csh -f
+# asm108b  shell script
+# modified  10/10/95 by rashhel
+# modified  Sep 96 by jules bergmann - hacked to run on irix
+# modified 10/04/2001 by daniel wang - hacked to use retargeted binaries
+# on solaris in ee282/bin directory
+#
+# modified 10/17/2001 by daniel wang - fixed .c compile problem. blasted
+# __main requirement... the hack is to axe it out.
+# modified 10/29/2001 by daniel wang - really fixed .c compile problem
+# destroyed .set reorder lines in the code.
+# modified 4/21/2003 by neil achtman - hacked to convert to .coe format
+# modified 4/21/2003 by vicwong - clean up unused code and make to work on
+#   cygwin
+# modified 12/24/2003 by neil achtman - now converts to .mem format
+
+if ($#argv == 0) then
+	echo "Usage : $0 sourcefile [<path of rename.awk>]"
+	echo "        Assemble test programs for EE108B."
+	echo "        Assembly files MUST have the extension '.s'."
+	echo "        e.g. to assemble add.s, use '$0 add.s'"
+    echo "        You must assemble on solaris or cygwin."
+    echo "        You can ignore objdump's warning of 'no symbols'."
+    echo "        You have to specify path to rename.awk if you use"
+    echo "        symbolic register name."
+	exit
+endif
+
+#get the base name without the .s or .c extension
+set name = `expr $1 : '\(.*\)\.[s]'`
+
+if ("$name.s" != $1) then
+	echo "$0 : ERROR '$1' does not have a .s suffix"
+	exit 1
+endif	
+
+# Check that the source file exists
+if (! -e $1) then
+	echo "$0 : could not find file $1"
+	exit 2
+endif
+
+# Don't let the assembler reorder to uses delay slots
+if (-e temp.s) rm -rf temp.s
+echo ".set noreorder" > temp.s
+
+if ($2 =~ *.awk) then 
+  echo "Running gawk ($2)..."
+  gawk -f $2 $name.s >> temp.s
+else
+  cat $name.s >> temp.s
+endif
+
+if (-e /usr/class/ee108b/bin/mips-dec-ultrix-as) then
+  set as = /usr/class/ee108b/bin/mips-dec-ultrix-as
+else
+  set as = `which mips-dec-ultrix-as`
+endif
+if (! -x $as) then
+  echo "$0: mips-dec-ultrix-as not found"
+  exit 3
+endif
+
+echo "Running $as..."
+$as -EB -o $name.bin temp.s
+    ## assemble, and force bigendian output.
+if ($status != 0) then
+	echo "$0 : ERROR assembling '$name.s'."
+  	echo "     Are you compiling on solaris?"
+
+	exit 1
+endif
+
+if (-e /usr/class/ee108b/bin/mips-dec-ultrix-objdump) then
+  set objdump = /usr/class/ee108b/bin/mips-dec-ultrix-objdump
+else
+  set objdump = `which mips-dec-ultrix-objdump`
+endif
+if (! -x $objdump) then
+  echo "$0: mips-dec-ultrix-objdump not found"
+  exit 3
+endif
+echo "Running $objdump..."
+$objdump --disassemble-zeroes -EB -d $name.bin >! $name.dis
+if ($status != 0) then
+	echo "$0 : ERROR disassembling $name.bin"
+	exit 1
+endif
+
+rm $name.bin
+rm temp.s 
+
+# create coe file for use with CoreGen
+awk 'BEGIN { print "MEMORY_INITIALIZATION_RADIX=16;" \
+	print "MEMORY_INITIALIZATION_VECTOR=" } \
+	$1 ~ /[0-9a-fA-F]:/ && $2 ~ /[0-9a-fA-F]/ { print $2, "," } \
+	END { print "00000000 ;" }' $name.dis \
+	> $name.coe
+
+# create mem file for use with data2mem utility
+awk 'BEGIN { print "@0000"} \
+	$1 ~ /[0-9a-fA-F]:/ && $2 ~ /[0-9a-fA-F]/ { print $2 } \
+	END { print "00000000" }' $name.dis > $name.mem
+ 
+#rm $name.dis

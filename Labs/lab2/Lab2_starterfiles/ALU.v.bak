@@ -1,0 +1,82 @@
+//******************************************************************************
+// EE108b MIPS verilog model
+//
+// ALU.v
+//
+// The ALU performs all the arithmetic/logical integer operations 
+// specified by the ALUsel from the decoder. 
+// 
+// verilog written by Daniel L. Rosenband, MIT 10/4/99
+// modified by John Kim 3/26/03
+// modified by Neil Achtman 8/15/03
+//
+//******************************************************************************
+
+module ALU (
+	// Outputs
+	ALUResult, ALUZero, ALUNeg,
+
+	// Inputs
+	ALUOp, ALUOpX, ALUOpY
+);
+
+	input [3:0]	ALUOp;				// Operation select
+	input [31:0]	ALUOpX, ALUOpY;		// operands
+
+	output [31:0]	ALUResult;			// result of operation
+	output		ALUZero, ALUNeg;		// result is 0 or negative
+
+//******************************************************************************
+// Shift operation: ">>>" will perform an arithmetic shift, but the operand
+// must be reg signed
+//******************************************************************************
+	reg signed [31:0] signedALUOpY;
+	
+	always @(ALUOpY) begin
+		signedALUOpY = ALUOpY;
+	end
+
+//******************************************************************************
+// Set operation
+//******************************************************************************
+	wire			aNbP, aPbN, sameSign;	// x < 0 and y > 0, x > 0 and y < 0, x and y are both > 0 or < 0
+	wire [31:0]	subRes;				// x - y
+	wire			isSLT, isSLTU;			// x < y, x < y unsigned
+	
+	// DETERMINE RESULT FROM SLT/SLTU/SLTI/SLTIU OPERATIONS
+	
+//******************************************************************************
+// ALU datapath
+//******************************************************************************
+		
+	// Decoded ALU operation select (ALUsel) signals
+	`define	select_alu_add		4'b0000
+	`define	select_alu_and		4'b0001
+	`define	select_alu_xor		4'b0010
+	`define	select_alu_or		4'b0011
+	`define	select_alu_nor		4'b0100
+	`define	select_alu_sub		4'b0101
+	`define	select_alu_sltu		4'b0110
+	`define	select_alu_slt		4'b0111
+	`define	select_alu_srl		4'b1000
+	`define	select_alu_sra		4'b1001
+	`define	select_alu_sll		4'b1010
+	`define select_alu_passa	4'b1011
+	`define	select_alu_passb	4'b1100
+	
+	reg [31:0]		ALUResult;
+	
+	always @(ALUOpX or ALUOpY or ALUOp or isSLTU or isSLT or signedALUOpY) begin
+
+		case (ALUOp)
+
+			// PERFORM ALU OPERATIONS DEFINED ABOVE
+
+			default:			ALUResult = 32'bxxxxxxxx;			// Undefined
+		endcase
+	end
+
+	assign ALUZero = (ALUResult[31:0] == 32'b0);
+	assign ALUNeg = ALUResult[31];
+
+endmodule
