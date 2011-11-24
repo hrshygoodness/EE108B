@@ -67,7 +67,7 @@ MIPS mips (
    .sda(),
    
 	.select		(select),
-	.mipsalive (mipsalive),
+	//.mipsalive (mipsalive),
 	// Feel free to change these
 	.right		(1'b1),
 	.left		(1'b1),

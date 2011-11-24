@@ -3,19 +3,426 @@ K3
 13
 cModel Technology
 Z0 dC:\Users\John Alabi\Documents\class\Aut-11\EE108B\Labs\lab2\Lab2_starterfiles
+T_opt
+VnknzX2CA9zE1mE?PA4ckg0
+04 8 4 work MIPStest fast 0
+Z1 =1-001ec92fa1d7-4ecdb23a-9660a-72cc
+Z2 o-quiet -auto_acc_if_foreign -work work -L xilinxcorelib_ver -L unisims_ver +acc=bcglnprst -O0
+Z3 n@_opt
+Z4 OL;O;6.5c;42
 vALU
-Z1 !s100 fO;`T1NLP8FjlPaeOjc;F0
-Z2 IYXHD]_n:L96oNmfFCOU590
-Z3 V4b`5?8BbddhE1jeLMa__02
-Z4 dC:\Users\John Alabi\Documents\class\Aut-11\EE108B\Labs\lab2\Lab2_starterfiles
-Z5 w1321041640
-Z6 8C:/Users/John Alabi/Documents/class/Aut-11/EE108B/Labs/lab2/Lab2_starterfiles/ALU.v
-Z7 FC:/Users/John Alabi/Documents/class/Aut-11/EE108B/Labs/lab2/Lab2_starterfiles/ALU.v
+Z5 Inb2KI=JUVK3`[^og>NfT93
+Z6 V4b`5?8BbddhE1jeLMa__02
+Z7 d/afs/ir/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles
+Z8 w1322015293
+Z9 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/ALU.v
+Z10 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/ALU.v
 L0 15
-Z8 OV;L;6.6d;45
+Z11 OL;L;6.5c;42
 r1
-!s85 0
 31
-!s101 -O0
-Z9 o-work work -O0
-Z10 n@a@l@u
+Z12 o-work work -nocovercells -L mtiAvm -L mtiOvm -L mtiUPF
+Z13 n@a@l@u
+Z14 !s102 -nocovercells
+Z15 !s100 fO;`T1NLP8FjlPaeOjc;F0
+!s85 0
+vchip_data_parser
+Z16 IXmVEH[PKzm5g[:mXGMKh81
+Z17 V_I158Qj:Kh;73@VS53<<b2
+R7
+Z18 w1322015294
+Z19 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/chip_data_parser.v
+Z20 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/chip_data_parser.v
+L0 11
+R11
+r1
+31
+R14
+R12
+Z21 !s100 mA^`<]lhV1H_037_b96HF2
+!s85 0
+vclkdiv
+Z22 IKObcRJzX0LOJZ2RNiV7aD1
+Z23 VDk5Jbn@JRX>74Gi^c_NF>2
+R7
+R18
+Z24 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/clkdiv.v
+Z25 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/clkdiv.v
+L0 1
+R11
+r1
+31
+R14
+R12
+Z26 !s100 o2BdW:<aOYD>jQba29`7Q3
+!s85 0
+vCLKgen
+Z27 IfAHFnPNdLWz>GM?[9i34g1
+Z28 Vba?ORRgKDbma[A650G?0<1
+R7
+R8
+Z29 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/CLKgen.v
+Z30 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/CLKgen.v
+L0 13
+R11
+r1
+31
+R14
+R12
+Z31 n@c@l@kgen
+Z32 !s100 FUBLYE>D>gNK68YQm]hA80
+!s85 0
+vdataram
+Z33 IcB9b<NE:lj9AAWHC7C5Em0
+Z34 V@?az>ii?8K?Dcb[HM3k<W0
+R7
+R18
+Z35 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/dataram.v
+Z36 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/dataram.v
+L0 40
+R11
+r1
+31
+R14
+R12
+Z37 !s100 [C[Y3Cji07DEI>KcEK3i60
+!s85 0
+vdebouncer
+Z38 I=YCR;XmbNP^^H8[^CCg`S3
+Z39 VM=N;N8U?POkZRCnHoQ^@H0
+R7
+R18
+Z40 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/debouncer.v
+Z41 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/debouncer.v
+L0 12
+R11
+r1
+31
+R14
+R12
+Z42 !s100 KghaYhB6K4XhkSTKj`04:2
+!s85 0
+vDecode
+Z43 IDfL1cdmn?L1ooN>5ofa_Q0
+Z44 VH2UP2eWK0BP99eBG15Ie42
+R7
+R8
+Z45 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/Decode.v
+Z46 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/Decode.v
+L0 18
+R11
+r1
+31
+R14
+R12
+Z47 n@decode
+Z48 !s100 3jP9E`BA6<Fa@V>ebZ22R2
+!s85 0
+vdffar
+Z49 I?Xdz24Fnbf8k[GF@Hamm20
+Z50 V<GRIoVME@l?2nSKHVQ;DD2
+R7
+R18
+Z51 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/dffar.v
+Z52 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/dffar.v
+L0 1
+R11
+r1
+31
+R14
+R12
+Z53 !s100 WgGVHPBmKR?zjdYE1cM5f2
+!s85 0
+vdffre
+Z54 IC0TEGRgWaCmZOddFQiJ=o3
+Z55 VRdlMaOU@aBfJBbGiJd4F[0
+R7
+R18
+Z56 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/dffre.v
+Z57 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/dffre.v
+L0 1
+R11
+r1
+31
+R14
+R12
+Z58 !s100 aef`zm5Oc`0?WzjJ7YR]P1
+!s85 0
+vDVI_Controller_Top
+Z59 I@OJ^CIPRbmdOb]JLh5h0=1
+Z60 VTNzX9fA7fa_6=k:09zG>H3
+R7
+R8
+Z61 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/DVI_Controller_Top.v
+Z62 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/DVI_Controller_Top.v
+L0 13
+R11
+r1
+31
+R14
+R12
+Z63 n@d@v@i_@controller_@top
+Z64 !s100 Ni=izDbj]GGQ_SMXAE@N`2
+!s85 0
+vframebuffer
+Z65 IjS[TzV2^2<?ea:3>LNM]C3
+Z66 Vbm=Se@1Yde[`k5b@@JFi>2
+R7
+R18
+Z67 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/framebuffer.v
+Z68 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/framebuffer.v
+L0 40
+R11
+r1
+31
+R14
+R12
+Z69 !s100 JO:PF75LCEkHb?Hj0KzKX3
+!s85 0
+vi2c_clk_gen
+Z70 IKIeRQ`8D]l549?T8>_Fz23
+Z71 VmTCIR>K@zH]?^2BRJz2nN3
+R7
+R18
+Z72 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_clk_gen.v
+Z73 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_clk_gen.v
+L0 16
+R11
+r1
+31
+R14
+R12
+Z74 !s100 e4C[Elik@1D`CD@m_kdeZ0
+!s85 0
+vi2c_data
+Z75 IZ]HXI55U88<b9m`@1eBGU0
+Z76 VF95nOdB[U3W5SfTBT1ZaV3
+R7
+R18
+Z77 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_data.v
+Z78 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_data.v
+L0 13
+R11
+r1
+31
+R14
+R12
+Z79 !s100 Doeln^NmY5dXiB?R>mAdh3
+!s85 0
+vi2c_fsm
+Z80 IT:hDRIA_R:DFlLiZSV^P93
+Z81 VH9mjbXII@`8lzoiS3EG>g3
+R7
+R18
+Z82 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_fsm.v
+Z83 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_fsm.v
+L0 13
+R11
+r1
+31
+R14
+R12
+Z84 !s100 UiYW>7Ki4gLW<j]40Q8aZ1
+!s85 0
+vi2c_sda_mux
+Z85 ID_YjcBd^eRV6mDePDPO5>1
+Z86 V_3:3?=S6VQJ___Tm`Q;380
+R7
+R18
+Z87 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_sda_mux.v
+Z88 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_sda_mux.v
+L0 11
+R11
+r1
+31
+R14
+R12
+Z89 !s100 <04j@N]QU?c6Qjm3b:iKK3
+!s85 0
+vi2c_top
+Z90 I3YCcaV9nfAKZGBCcPZRdb0
+Z91 V=MIKh2a8Zb]fL51o<4AXO0
+R7
+R18
+Z92 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_top.v
+Z93 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/i2c_top.v
+L0 13
+R11
+r1
+31
+R14
+R12
+Z94 !s100 2JRW3SXa[:POGVhD[oZR92
+!s85 0
+vIF
+Z95 I2Eh3?fV@7_6GQb:1Cc9mC0
+Z96 VaeF20OD9P]Mi<AXi4dn:F0
+R7
+R8
+Z97 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/IF.v
+Z98 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/IF.v
+L0 14
+R11
+r1
+31
+R14
+R12
+n@i@f
+Z99 !s100 _63@P;`0QY22nJd73bO`S1
+!s85 0
+virom
+Z100 I:C`VZN7DA7R`:Ym?HM5H53
+Z101 VTo8VB_ieF;7`a;00_]IfT0
+R7
+R18
+Z102 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/irom.v
+Z103 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/irom.v
+L0 40
+R11
+r1
+31
+R14
+R12
+Z104 !s100 XaMcn]3gA7<D<?o;c^IaV3
+!s85 0
+vMemStage
+Z105 II>ZFnl8MgLhGiBW??YfMl0
+Z106 VBh5l^?mhXfN?544HB^NHo3
+R7
+R8
+Z107 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/MemStage.v
+Z108 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/MemStage.v
+L0 15
+R11
+r1
+31
+R14
+R12
+Z109 n@mem@stage
+Z110 !s100 86T7kI<:?^lH8<bzMaZYN0
+!s85 0
+vMIPS
+Z111 ITYzhj17aP=Q0nC4[c0C0U1
+Z112 Vbabi4W:;J;JMOVMb:MDVk0
+R7
+R8
+Z113 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/MIPS.v
+Z114 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/MIPS.v
+L0 15
+R11
+r1
+31
+R14
+R12
+Z115 n@m@i@p@s
+Z116 !s100 2J^;6F>h]MaDO>UC3ejCX2
+!s85 0
+vMIPStest
+Z117 IOcW[z5Wfz`B3BCQzB0oXK3
+Z118 VYXFbFV3PfnWofh;lN]oY73
+R7
+Z119 w1322103130
+Z120 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/MIPStest.v
+Z121 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/MIPStest.v
+L0 14
+R11
+r1
+31
+R14
+R12
+Z122 n@m@i@p@stest
+Z123 !s100 ?J=0hOdQVTNaX1RoWfY4]3
+!s85 0
+vone_pulse
+Z124 Im^h2GR?ncfB0dVQ7CYSTe0
+Z125 VU]Vj@j]K94gDma<z@7oa@3
+R7
+R18
+Z126 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/one_pulse.v
+Z127 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/one_pulse.v
+L0 12
+R11
+r1
+31
+R14
+R12
+Z128 !s100 BJ2@PK3D>E;b_lUSU3AmI0
+!s85 0
+vRegFile
+Z129 I]I16`P2^6>:j[[0UmXQ;@3
+Z130 V5jW8Y;L59W<k?ngW8WE3:3
+R7
+R8
+Z131 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/RegFile.v
+Z132 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/RegFile.v
+L0 14
+R11
+r1
+31
+R14
+R12
+Z133 n@reg@file
+Z134 !s100 9]WWdnfPj:eEOdVlARgO61
+!s85 0
+vSega_ctl
+Z135 Io>gCJimO8_A8QZAo2PYd62
+Z136 VO8mjKWPQZ;3XB_:a[bkdA2
+R7
+R8
+Z137 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/Sega_ctl.v
+Z138 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/Sega_ctl.v
+L0 14
+R11
+r1
+31
+R14
+R12
+Z139 n@sega_ctl
+Z140 !s100 <ZfMk?Z:<cXeA:h_7?<8D3
+!s85 0
+vsync_generators
+Z141 I]YT[3>YEXR6co]G0RcE=M3
+Z142 V3oBDNmABkgUIW<>L9nD=Z2
+R7
+R18
+Z143 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/sync_generators.v
+Z144 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/sync_generators.v
+L0 13
+R11
+r1
+31
+R14
+R12
+Z145 !s100 C@_TNTYeCC`kD89;@?]``3
+!s85 0
+vtcgrom
+Z146 IOnGU:HOi3Z7Cizh`:a:nZ3
+Z147 V7D^i6G?X9_kNRl;bDW>d;3
+R7
+R18
+Z148 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/tcgrom.v
+Z149 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/tcgrom.v
+L0 40
+R11
+r1
+31
+R14
+R12
+Z150 !s100 ^FQ06ZgfS>f6NFkDU:<IO2
+!s85 0
+vVGA_ctl
+Z151 IoP65Y63[B2o@=5XRM@hMX2
+Z152 VLb78R:dbe62d<@RnG@VO61
+R7
+R8
+Z153 8/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/VGA_ctl.v
+Z154 F/afs/ir.stanford.edu/users/a/l/alabmix/class/Aut-11/ee108b/GitRepo/Labs/lab2/Lab2_starterfiles/VGA_ctl.v
+L0 17
+R11
+r1
+31
+R14
+R12
+Z155 n@v@g@a_ctl
+Z156 !s100 o@C>fmLKheM6PQNDMY<FQ2
+!s85 0
