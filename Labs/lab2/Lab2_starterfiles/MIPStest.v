@@ -13,62 +13,62 @@
 
 module MIPStest ();
 
-wire select;
+wire tb_select;
 
 
-wire chip_hsync, chip_vsync, chip_data_enable, chip_reset;
-wire [11:0] chip_data;
-wire [`log2NUM_COLS-1:0]x;
-wire [`log2NUM_ROWS-1:0]y;
+wire tb_chip_hsync, tb_chip_vsync, tb_chip_data_enable, tb_chip_reset;
+wire [11:0] tb_chip_data;
+wire [`log2NUM_COLS-1:0]tb_x;
+wire [`log2NUM_ROWS-1:0]tb_y;
 
 
-wire clk_i2c, finished, xclk, xclk_bar;
+wire tb_clk_i2c, tb_finished, tb_xclk, tb_xclk_bar;
 
-wire mipsalive;
+//wire mipsalive;
 
-reg MClk;
-reg reset;
+reg tb_MClk;
+reg tb_reset_n;
 
-initial MClk = 0;
+initial tb_MClk = 0;
 
 initial begin
-	reset = 1;
+	tb_reset_n = 1;
 	# 100;
-	reset = 0;
+	tb_reset_n = 0;
 	# 100;
-	reset = 1;
+	tb_reset_n = 1;
 	# 400;
 
 	#10000000; $stop;
 end
 
-always #20 MClk = ~MClk;
+always #20 tb_MClk = ~tb_MClk;
 
-MIPS mips (
-	.clk			(MClk),
-	.rst			(reset),
+MIPS mips_inst0 (
+	.clk			(tb_MClk),
+	.rst			(tb_reset_n),
 	.step		(1'b0),
 	
 	.display_mode	(1'b1),
 	.run_mode		(1'b1),
 	
-	.chip_hsync	(chip_hsync),
-	.chip_vsync	(chip_vsync),
-	.chip_data_enable(chip_data_enable),
-	.chip_reset		(chip_reset),
-	.chip_data	(chip_data),
-	.x	(x),
-	.y (y),
-	.clk_i2c(clk_i2c),
-   .finished(finished),
-   .xclk(xclk),
-   .xclk_bar(xclk_bar),
+	.chip_hsync	(tb_chip_hsync),
+	.chip_vsync	(tb_chip_vsync),
+	.chip_data_enable(tb_chip_data_enable),
+	.chip_reset		(tb_chip_reset),
+	.chip_data	(tb_chip_data),
+	.x	(tb_x),
+	.y (tb_y),
+	.clk_i2c(tb_clk_i2c),
+   .finished(tb_finished),
+   .xclk(tb_xclk),
+   .xclk_bar(tb_xclk_bar),
    
    .sda(),
    
-	.select		(select),
+	.select		(tb_select),
 	//.mipsalive (mipsalive),
-	// Feel free to change these
+	// Feel free to chanWge these
 	.right		(1'b1),
 	.left		(1'b1),
 	.down		(1'b1),
@@ -76,5 +76,9 @@ MIPS mips (
 	.c_start		(1'b1),
 	.a_b			(1'b1)
 );
+
+initial
+    $monitor("time=%t, rst=%b, clk=%b, count=%b\n", $time, rst, clk, count);
+ 
 
 endmodule

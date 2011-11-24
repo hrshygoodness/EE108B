@@ -89,7 +89,7 @@ module MIPS (
 //******************************************************************************
 
 
-	IF IF (
+	IF IF_inst0 (
 		// Outputs
 		.pc				(pc),        
 		.instr			(instr),
@@ -109,7 +109,7 @@ module MIPS (
 //******************************************************************************
 // Instruction Decode unit
 //******************************************************************************
-	Decode Decode(
+	Decode Decode_inst0(
 		// Outputs
    		.JumpBranch		(JumpBranch), 
 		.JumpTarget 		(JumpTarget),
@@ -138,7 +138,7 @@ module MIPS (
 	`define	rs			25:21	// 5-bit source register specifier
 	`define	rt			20:16	// 5-bit source/dest register specifier
 
-	RegFile RegFile (
+	RegFile RegFile_inst0 (
 		// Outputs
 		.RsData			(RsData),
 		.RtData			(RtData),
@@ -157,7 +157,7 @@ module MIPS (
 // ALU (Execution Unit)
 //******************************************************************************
 
-	ALU ALU (
+	ALU ALU_inst0 (
 		// Outputs
 		.ALUResult		(ALUResult),
 		.ALUZero			(ALUZero),
@@ -173,7 +173,7 @@ module MIPS (
 // Interface with Data Memory
 //******************************************************************************
 
-	MemStage MemStage (
+	MemStage MemStage_inst0 (
 		// Outputs
 		.VgaWE			(VgaWE),
 		.RegWriteData		(RegWriteData),
@@ -195,7 +195,7 @@ module MIPS (
 	// CLK/2 = memclk (25Mhz) (inverted)
 	// Clk/4 = mipsclk (12.5MHz)
 
-	CLKgen  CLKgen (
+	CLKgen  CLKgen_inst0 (
 		// Outputs
 		.mipsclk			(mipsclk),
 		.memclk			(memclk),
@@ -211,7 +211,7 @@ module MIPS (
 // VGA interface
 //******************************************************************************
 
-	VGA_ctl VGA_ctl (
+	VGA_ctl VGA_ctl_inst0 (
 		// Outputs
 		.vga_hsync		(),
 		.vga_vsync		(),
@@ -242,7 +242,7 @@ module MIPS (
 // Sega controller interface
 //******************************************************************************
 
-	Sega_ctl sega_ctl (
+	Sega_ctl sega_ctl_inst0 (
 		// Outputs
 		.move			(SegaData),
 		
@@ -261,7 +261,7 @@ module MIPS (
   // i2c controller interface
   //******************************************************************************
   
-  i2c_top i2c_controller(
+  i2c_top i2c_controller_inst0(
     // Outputs
       .clk_i2c(clk_i2c),
       .finished(finished),
@@ -277,7 +277,7 @@ module MIPS (
 // DVI controller interface
 //******************************************************************************
 
-  DVI_Controller_Top dvi_ctrl(/*AUTOINST*/
+  DVI_Controller_Top dvi_ctrl_inst0(/*AUTOINST*/
     // Outputs
       .chip_data_enable(chip_data_enable),
       .chip_hsync(chip_hsync),
@@ -295,7 +295,7 @@ module MIPS (
       .reset(~rst)
       );
       
-  clkdiv clk_divider(
+  clkdiv clk_divider_inst0(
     // Outputs
       .reset(~rst),
       .source_clk(clk),
